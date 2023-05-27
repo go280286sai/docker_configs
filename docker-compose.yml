@@ -43,23 +43,23 @@ services:
 #        - ./www/node:/usr/src/app
 #      working_dir: /usr/src/app
 #      command: npm start
-    apache:
-      build: ./apache
-      container_name: apache
-      volumes:
-        - ./www/php:/var/www/html
-      ports:
-        - "8084:80"
-      environment:
-        WEB_DOCUMENT_ROOT: "/var/www/html"
-        WEB_DOCUMENT_INDEX: index.php
-        PHP_MEMORY_LIMIT: 1024M
-        PHP_UPLOAD_MAX_FILESIZE: 512M
-        PHP_POST_MAX_SIZE: 512M
-        PHP_DISPLAY_ERRORS: 1
-        php.xdebug.max_nesting_level: 500
-        XDEBUG_CONFIG: "xdebug.mode=debug"
-        XDEBUG_MODE: coverage
+#    apache:
+#      build: ./apache
+#      container_name: apache
+#      volumes:
+#        - ./www/php:/var/www/html
+#      ports:
+#        - "8084:80"
+#      environment:
+#        WEB_DOCUMENT_ROOT: "/var/www/html"
+#        WEB_DOCUMENT_INDEX: index.php
+#        PHP_MEMORY_LIMIT: 1024M
+#        PHP_UPLOAD_MAX_FILESIZE: 512M
+#        PHP_POST_MAX_SIZE: 512M
+#        PHP_DISPLAY_ERRORS: 1
+#        php.xdebug.max_nesting_level: 500
+#        XDEBUG_CONFIG: "xdebug.mode=debug"
+#        XDEBUG_MODE: coverage
 #    redis:
 #      image: 'redis:alpine'
 #      ports:
@@ -95,16 +95,27 @@ services:
 #       - "5000:5000"
 #     volumes:
 #       - ./www/flask:/app
-#    postgres:
-#      image: postgres:15.3-alpine
-#      container_name: postgres
-#      restart: always
-#      ports:
-#        - "5432:5432"
-#      environment:
-#        - POSTGRES_USER=root
-#        - POSTGRES_PASSWORD=masterkey
-#        - POSTGRES_DB=django_dev
+    postgres:
+      image: postgres:14-alpine
+      container_name: postgres
+      restart: always
+      ports:
+        - "5432:5432"
+      environment:
+        - POSTGRES_USER=root
+        - POSTGRES_PASSWORD=masterkey
+        - POSTGRES_DB=django_dev
+    pgadmin4:
+      image: fenglc/pgadmin4
+      container_name: pgadmin4
+      restart: always
+      volumes:
+        - ./postgress:/var/lib/pgadmin
+      environment:
+          PGADMIN_DEFAULT_EMAIL: pgadmin4@pgadmin.org
+          PGADMIN_DEFAULT_PASSWORD: admin
+      ports:
+        - "5050:5050"
 #    adminer:
 #      image: adminer
 #      restart: always

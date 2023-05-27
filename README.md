@@ -222,11 +222,43 @@ PASSWORD: masterkey
  
 host: ['Ваш ip']
 
-port: 27017
+port: 5432
 
 LOGIN: root
 
 PASSWORD: masterkey
+
+## PGADMIN4
+
+### Docker-compose:
+
+    pgadmin4:
+      image: fenglc/pgadmin4
+      container_name: pgadmin4
+      restart: always
+      volumes:
+        - ./postgress:/var/lib/pgadmin
+      environment:
+          PGADMIN_DEFAULT_EMAIL: pgadmin4@pgadmin.org
+          PGADMIN_DEFAULT_PASSWORD: admin
+      ports:
+        - "5050:5050"
+
+email: pgadmin4@pgadmin.org
+
+password: admin
+
+Create server:
+
+host: ['Ваш ip']
+
+port: 5432
+
+db: django_dev
+
+login: root
+
+password: masterkey
 
 ## ADMINER
 
