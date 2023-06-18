@@ -11,6 +11,7 @@
 ### - FLASK
 ### - POSTGRES
 ### - ADMINER
+### - MEMCACHED
 
 Для запуска контейнера необходимо раскомментировать нужные и выполнить:
 docker-compose up --build ('--build' необходим при первом запуске)
@@ -376,3 +377,13 @@ http://localhost:8000/
 http://['Ваш ip']:5000/
 
 http://localhost:5000/
+
+## ADMINER
+
+### Docker-compose:
+
+ memcached:
+      image: 'memcached:alpine'
+      ports:
+        - '11211:11211'
+
