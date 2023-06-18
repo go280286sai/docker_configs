@@ -378,7 +378,7 @@ http://['Ваш ip']:5000/
 
 http://localhost:5000/
 
-## ADMINER
+## MEMCACHED
 
 ### Docker-compose:
 
