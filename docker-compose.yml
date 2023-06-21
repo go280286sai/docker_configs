@@ -125,5 +125,12 @@ services:
 #      restart: always
 #      ports:
 #        - "8086:8080"
+#    rebbitmq:
+#      image: rabbitmq:3-management
+#      ports:
+#        - "5672:5672"
+#        - "15672:15672"
+##      login: guest
+##      password: guest
 volumes:
   learn-db:
